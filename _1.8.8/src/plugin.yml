@@ -1,0 +1,16 @@
+main: fr.alkanife.mcdevtools.MCDevTools
+name: mcdevtools
+version: 1.0
+author: alkanife
+website: https://github.com/alkanife/mcdevtools
+commands:
+  echo:
+    aliases: [e]
+    description: Broadcast input
+    usage: "§cUsage: /e <message>"
+  rename:
+    description: Quickly rename an item (requires to be a player)
+    usage: "§cUsage: /rename <name>"
+  lore:
+    description: Quickly set a lore to an item ('-n' to skip line). If executed by console, this applies to the first connected player
+    usage: "§cUsage: /lore <content>"
