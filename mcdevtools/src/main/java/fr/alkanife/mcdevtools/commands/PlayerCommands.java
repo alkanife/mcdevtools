@@ -6,12 +6,43 @@ import dev.jorel.commandapi.arguments.ArgumentSuggestions;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import dev.jorel.commandapi.arguments.StringArgument;
+import fr.alkanife.mcdevtools.DevTool;
+import fr.alkanife.mcdevtools.ToolCollection;
 import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.entity.Player;
 
 import java.util.Objects;
 
 public class PlayerCommands extends ToolCollection {
+
+    @DevTool
+    public void player_fly() {
+        new CommandAPICommand(":player_fly")
+                .withFullDescription("Toggle player flight")
+                .withPermission(CommandPermission.OP)
+                .withArguments(new PlayerArgument("player"))
+                .executes((commandSender, objects) -> {
+                    Player player = (Player) Objects.requireNonNull(objects.get(0));
+                    toggleFlight(player);
+                }).register();
+
+        new CommandAPICommand(":player_flight")
+                .withFullDescription("Toggle player flight")
+                .withPermission(CommandPermission.OP)
+                .executesPlayer((commandSender, objects) -> {
+                    toggleFlight(commandSender);
+                }).register();
+    }
+
+    private void toggleFlight(Player player) {
+        if (player.getAllowFlight()) {
+            player.setAllowFlight(false);
+            player.setFlying(false);
+        } else {
+            player.setAllowFlight(true);
+            player.setFlying(true);
+        }
+    }
 
     //
     // Name

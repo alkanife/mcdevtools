@@ -1,4 +1,4 @@
-package fr.alkanife.mcdevtools.commands;
+package fr.alkanife.mcdevtools;
 
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;

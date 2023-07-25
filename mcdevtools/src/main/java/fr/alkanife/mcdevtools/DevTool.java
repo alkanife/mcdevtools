@@ -1,4 +1,4 @@
-package fr.alkanife.mcdevtools.commands;
+package fr.alkanife.mcdevtools;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
