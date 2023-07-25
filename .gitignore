@@ -3,3 +3,5 @@
 out/
 *.jar
 target/
+dependency-reduced-pom.xml
+.gitattributes
