@@ -17,7 +17,7 @@ public class MCDevTools extends JavaPlugin {
 
         new EchoCommands().register();
         new LoreCommand().register();
-        new RenameCommand().register();
+        new RenameCommands().register();
     }
 
     @Override

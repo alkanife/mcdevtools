@@ -1,6 +1,7 @@
 package fr.alkanife.mcdevtools;
 
 import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
 import net.kyori.adventure.text.Component;
@@ -20,7 +21,9 @@ public class LoreCommand {
 
     public void register() {
         new CommandAPICommand("lore")
-                .withArguments(new PlayerArgument("player"), new GreedyStringArgument("text"))
+                .withFullDescription("Set a lore to a player's item")
+                .withPermission(CommandPermission.OP)
+                .withArguments(new PlayerArgument("player"), new GreedyStringArgument("minimessages"))
                 .executes((commandSender, objects) -> {
                     if (!commandSender.isOp())
                         return;
