@@ -16,7 +16,7 @@ public class EchoCommands {
                     if (!commandSender.isOp())
                         return;
 
-                    Bukkit.broadcast(Component.text(((String) objects[0]).replaceAll("&", "§")));
+                    Bukkit.broadcast(Component.text(((String) objects.args()[0]).replaceAll("&", "§")));
                 }).register();
 
         new CommandAPICommand("echominimessage")
@@ -26,7 +26,7 @@ public class EchoCommands {
                     if (!commandSender.isOp())
                         return;
 
-                    Bukkit.broadcast(MiniMessage.miniMessage().deserialize((String) objects[0]));
+                    Bukkit.broadcast(MiniMessage.miniMessage().deserialize((String) objects.args()[0]));
                 }).register();
     }
 

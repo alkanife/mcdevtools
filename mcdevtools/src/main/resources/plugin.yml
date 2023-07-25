@@ -1,7 +1,6 @@
 main: fr.alkanife.mcdevtools.MCDevTools
 name: mcdevtools
-version: 1.0.0
-author: Alkanife
-api-version: 1.19
+version: ${project.version}
+author: Arthur B. Alkanife
+api-version: '1.20'
 website: https://github.com/alkanife/mcdevtools
-depend: [CommandAPI]

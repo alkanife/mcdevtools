@@ -24,7 +24,7 @@ public class RenameCommand {
                     if (!commandSender.isOp())
                         return;
 
-                    Player player = (Player) objects[0];
+                    Player player = (Player) objects.args()[0];
 
                     ItemStack itemStack = player.getInventory().getItemInMainHand();
 
@@ -35,7 +35,7 @@ public class RenameCommand {
 
                     Component component = Component.text("")
                             .color(TextColor.color(255, 255, 255)).decoration(TextDecoration.ITALIC, false)
-                            .append(MiniMessage.miniMessage().deserialize((String) objects[1]));
+                            .append(MiniMessage.miniMessage().deserialize((String) objects.args()[1]));
                     itemMeta.displayName(component);
                     itemStack.setItemMeta(itemMeta);
                 }).register();

@@ -25,14 +25,14 @@ public class LoreCommand {
                     if (!commandSender.isOp())
                         return;
 
-                    Player player = (Player) objects[0];
+                    Player player = (Player) objects.args()[0];
 
                     ItemStack itemStack = player.getInventory().getItemInMainHand();
 
                     if (itemStack.getType().equals(Material.AIR))
                         return;
 
-                    String content = (String) objects[1];
+                    String content = (String) objects.args()[1];
                     String[] lines = content.split("<newline>");
 
                     List<Component> components = new ArrayList<>();
