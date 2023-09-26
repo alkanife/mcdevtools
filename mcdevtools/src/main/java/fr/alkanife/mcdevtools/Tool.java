@@ -1,5 +1,7 @@
 package fr.alkanife.mcdevtools;
 
+import dev.jorel.commandapi.CommandAPICommand;
+import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.executors.CommandArguments;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
@@ -13,7 +15,28 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
-public abstract class ToolCollection {
+public abstract class Tool {
+
+    private MCDevTools plugin;
+
+    public MCDevTools getPlugin() {
+        return plugin;
+    }
+
+    public void setPlugin(MCDevTools plugin) {
+        this.plugin = plugin;
+    }
+
+    public CommandAPICommand createCommandTool(String name, String description) {
+        return createCommandTool(name, description, null);
+    }
+
+    public CommandAPICommand createCommandTool(String name, String description, String usage) {
+        return new CommandAPICommand(":" + name)
+                .withHelp(description, description)
+                .withUsage("/:" + name + (usage == null ? "" : (" " + usage)))
+                .withPermission(CommandPermission.OP);
+    }
 
     public @NotNull Component getMinimessageAt(CommandArguments commandArguments, int i) {
         return MiniMessage.miniMessage().deserialize((String) Objects.requireNonNull(commandArguments.get(i)));

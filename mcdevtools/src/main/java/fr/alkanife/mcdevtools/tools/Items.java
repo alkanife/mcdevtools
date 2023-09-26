@@ -1,12 +1,10 @@
-package fr.alkanife.mcdevtools.commands;
+package fr.alkanife.mcdevtools.tools;
 
-import dev.jorel.commandapi.CommandAPICommand;
-import dev.jorel.commandapi.CommandPermission;
 import dev.jorel.commandapi.arguments.GreedyStringArgument;
 import dev.jorel.commandapi.arguments.IntegerArgument;
 import dev.jorel.commandapi.arguments.PlayerArgument;
-import fr.alkanife.mcdevtools.DevTool;
-import fr.alkanife.mcdevtools.ToolCollection;
+import fr.alkanife.mcdevtools.Command;
+import fr.alkanife.mcdevtools.Tool;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextColor;
 import net.kyori.adventure.text.format.TextDecoration;
@@ -20,13 +18,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ItemCommands extends ToolCollection {
+public class Items extends Tool {
 
-    @DevTool
-    public void item_name() {
-        new CommandAPICommand(":item_name")
-                .withFullDescription("Changes the name of the item the player is holding")
-                .withPermission(CommandPermission.OP)
+    @Command
+    public void nameCommand() {
+        createCommandTool("item_name", "Changes the name of the item the player is holding", "<player> <mini_message>")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -46,11 +42,9 @@ public class ItemCommands extends ToolCollection {
                 }).register();
     }
 
-    @DevTool
-    public void item_lore() {
-        new CommandAPICommand(":item_lore")
-                .withFullDescription("Changes the lore of the item the player is holding")
-                .withPermission(CommandPermission.OP)
+    @Command
+    public void loreCommand() {
+        createCommandTool("item_lore", "Changes the lore of the item the player is holding", "<player> <mini_message>")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_messages"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -74,11 +68,9 @@ public class ItemCommands extends ToolCollection {
                 }).register();
     }
 
-    @DevTool
-    public void item_lore_at() {
-        new CommandAPICommand(":item_lore_at")
-                .withFullDescription("Changes the lore of the item the player is holding, specifying which line to change")
-                .withPermission(CommandPermission.OP)
+    @Command
+    public void loreAtCommand() {
+        createCommandTool("item_lore_at", "Changes the lore of the item the player is holding, specifying which line to change", "<player> <position> <mini_message>")
                 .withArguments(new PlayerArgument("player"), new IntegerArgument("pos"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));

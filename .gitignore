@@ -5,3 +5,4 @@ out/
 target/
 dependency-reduced-pom.xml
 .gitattributes
+.DS_Store

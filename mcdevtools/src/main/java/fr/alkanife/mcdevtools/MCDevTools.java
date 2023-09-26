@@ -2,8 +2,16 @@ package fr.alkanife.mcdevtools;
 
 import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
-import fr.alkanife.mcdevtools.commands.*;
+import fr.alkanife.mcdevtools.tools.Chat;
+import fr.alkanife.mcdevtools.tools.Items;
+import fr.alkanife.mcdevtools.tools.Tablist;
+import fr.alkanife.mcdevtools.tools.player.PlayerFly;
+import fr.alkanife.mcdevtools.tools.player.PlayerName;
+import fr.alkanife.mcdevtools.tools.player.PlayerTeam;
+import org.bukkit.Bukkit;
+import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,11 +27,12 @@ public class MCDevTools extends JavaPlugin {
     public void onEnable() {
         CommandAPI.onEnable();
 
-        // Declaring commands
+        // Register tools
         try {
-            registerTools(new PlayerCommands(),
-                    new OtherCommands(),
-                    new ItemCommands());
+            registerTool(new Tablist());
+            registerTool(new Chat());
+            registerTool(new Items());
+            registerTools(new PlayerFly(), new PlayerName(), new PlayerTeam());
         } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -34,14 +43,26 @@ public class MCDevTools extends JavaPlugin {
         CommandAPI.onDisable();
     }
 
-    // Invoke the method under the DevTool annotation for each class given
-    private void registerTools(ToolCollection... toolCollections) throws InvocationTargetException, IllegalAccessException {
-        for (ToolCollection toolCollection : toolCollections) {
-            for (Method method : toolCollection.getClass().getDeclaredMethods()) {
-                if (method.isAnnotationPresent(DevTool.class)) {
-                    method.setAccessible(true);
-                    method.invoke(toolCollection);
-                }
+    private void registerTools(@NotNull Tool... tools) throws InvocationTargetException, IllegalAccessException {
+        for (Tool tool : tools)
+            registerTool(tool);
+    }
+
+    private void registerTool(@NotNull Tool tool) throws InvocationTargetException, IllegalAccessException {
+
+        // Invoke command methods
+        for (Method method : tool.getClass().getDeclaredMethods()) {
+            if (method.isAnnotationPresent(Command.class)) {
+                method.setAccessible(true);
+                method.invoke(tool);
+            }
+        }
+
+        // Register events
+        for (Class<?> interfaces : tool.getClass().getInterfaces()) {
+            if (interfaces == Listener.class) {
+                Bukkit.getPluginManager().registerEvents((Listener) tool, this);
+                break;
             }
         }
     }
