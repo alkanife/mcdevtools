@@ -17,7 +17,7 @@ public class Tablist extends Tool implements Listener {
 
     @Command
     public void headerCommand() {
-        createCommandTool("tablist_header", "Changes tab list header", "<mini_message>")
+        createCommand("tablist_header", "Changes tab list header")
                 .withArguments(new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     header = getMinimessageAt(objects, 0);
@@ -29,7 +29,7 @@ public class Tablist extends Tool implements Listener {
 
     @Command
     public void footerCommand() {
-        createCommandTool("tablist_footer", "Changes tab list footer", "<mini_message>")
+        createCommand("tablist_footer", "Changes tab list footer")
                 .withArguments(new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     footer = getMinimessageAt(objects, 0);

@@ -13,6 +13,7 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class Items extends Tool {
 
     @Command
     public void nameCommand() {
-        createCommandTool("item_name", "Changes the name of the item the player is holding", "<player> <mini_message>")
+        createCommand("item_name", "Changes the name of the item the player is holding")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -44,7 +45,7 @@ public class Items extends Tool {
 
     @Command
     public void loreCommand() {
-        createCommandTool("item_lore", "Changes the lore of the item the player is holding", "<player> <mini_message>")
+        createCommand("item_lore", "Changes the lore of the item the player is holding")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_messages"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -70,7 +71,7 @@ public class Items extends Tool {
 
     @Command
     public void loreAtCommand() {
-        createCommandTool("item_lore_at", "Changes the lore of the item the player is holding, specifying which line to change", "<player> <position> <mini_message>")
+        createCommand("item_lore_at", "Changes the lore of the item the player is holding, specifying which line to change")
                 .withArguments(new PlayerArgument("player"), new IntegerArgument("pos"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -99,6 +100,12 @@ public class Items extends Tool {
                     itemMeta.lore(newLore);
                     itemStack.setItemMeta(itemMeta);
                 }).register();
+    }
+
+    private Component clearedText(@NotNull Component component) {
+        return Component.text("")
+                .color(TextColor.color(255, 255, 255)).decoration(TextDecoration.ITALIC, false)
+                .append(component);
     }
 
 }

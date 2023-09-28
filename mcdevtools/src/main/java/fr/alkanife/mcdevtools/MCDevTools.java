@@ -4,7 +4,9 @@ import dev.jorel.commandapi.CommandAPI;
 import dev.jorel.commandapi.CommandAPIBukkitConfig;
 import fr.alkanife.mcdevtools.tools.Chat;
 import fr.alkanife.mcdevtools.tools.Items;
+import fr.alkanife.mcdevtools.tools.Methods;
 import fr.alkanife.mcdevtools.tools.Tablist;
+import fr.alkanife.mcdevtools.tools.entity.EntityLocation;
 import fr.alkanife.mcdevtools.tools.player.PlayerFly;
 import fr.alkanife.mcdevtools.tools.player.PlayerName;
 import fr.alkanife.mcdevtools.tools.player.PlayerTeam;
@@ -17,6 +19,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class MCDevTools extends JavaPlugin {
+
 
     @Override
     public void onLoad() {
@@ -33,6 +36,8 @@ public class MCDevTools extends JavaPlugin {
             registerTool(new Chat());
             registerTool(new Items());
             registerTools(new PlayerFly(), new PlayerName(), new PlayerTeam());
+            registerTools(new EntityLocation());
+            registerTools(new Methods());
         } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -49,6 +54,7 @@ public class MCDevTools extends JavaPlugin {
     }
 
     private void registerTool(@NotNull Tool tool) throws InvocationTargetException, IllegalAccessException {
+        tool.setPlugin(this);
 
         // Invoke command methods
         for (Method method : tool.getClass().getDeclaredMethods()) {

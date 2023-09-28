@@ -11,7 +11,7 @@ public class Chat extends Tool {
 
     @Command
     public void echoCommand() {
-        createCommandTool("echo", "Broadcasts input", "<mini_message>")
+        createCommand("echo", "Broadcasts input")
                 .withArguments(new GreedyStringArgument("minimessage"))
                 .executes((commandSender, objects) -> {
                     Bukkit.broadcast(getMinimessageAt(objects, 0));
@@ -20,11 +20,11 @@ public class Chat extends Tool {
 
     @Command
     public void clearCommand() {
-        createCommandTool("clear_chat", "Clear chat by sending empty messages")
+        createCommand("clear_chat", "Clear chat by sending empty messages")
                 .executes((commandSender, commandArguments) -> {
                     Component empty = MiniMessage.miniMessage().deserialize("<white>");
 
-                    for (int i = 0; i < 50; i++)
+                    for (int i = 0; i < 100; i++)
                         Bukkit.broadcast(empty);
                 }).register();
     }

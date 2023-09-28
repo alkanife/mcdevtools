@@ -11,14 +11,14 @@ public class PlayerFly extends Tool {
 
     @Command
     public void flyCommand() {
-        createCommandTool("player_fly", "Toggle player flight", "<player>")
+        createCommand("player_fly", "Toggle player flight")
                 .withArguments(new PlayerArgument("player"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
                     toggle(player);
                 }).register();
 
-        createCommandTool("player_fly", "Toggle player flight", "<player>")
+        createCommand("player_fly", "Toggle player flight")
                 .executesPlayer((commandSender, objects) -> {
                     toggle(commandSender);
                 }).register();

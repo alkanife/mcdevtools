@@ -27,42 +27,13 @@ public abstract class Tool {
         this.plugin = plugin;
     }
 
-    public CommandAPICommand createCommandTool(String name, String description) {
-        return createCommandTool(name, description, null);
-    }
-
-    public CommandAPICommand createCommandTool(String name, String description, String usage) {
+    public CommandAPICommand createCommand(String name, String description) {
         return new CommandAPICommand(":" + name)
                 .withHelp(description, description)
-                .withUsage("/:" + name + (usage == null ? "" : (" " + usage)))
                 .withPermission(CommandPermission.OP);
     }
 
     public @NotNull Component getMinimessageAt(CommandArguments commandArguments, int i) {
         return MiniMessage.miniMessage().deserialize((String) Objects.requireNonNull(commandArguments.get(i)));
-    }
-
-    // Get the player's team, create one if null
-    public @NotNull Team getPlayerTeam(Player player) {
-        Scoreboard scoreboard = Bukkit.getScoreboardManager().getMainScoreboard();
-        Team team = scoreboard.getPlayerTeam(player);
-
-        if (team == null) {
-            team = scoreboard.getTeam("d_"+player.getName());
-
-            if (team == null)
-                team = scoreboard.registerNewTeam("d_"+player.getName());
-
-            if (!team.hasPlayer(player))
-                team.addPlayer(player);
-        }
-
-        return team;
-    }
-
-    public Component clearedText(Component component) {
-        return Component.text("")
-                .color(TextColor.color(255, 255, 255)).decoration(TextDecoration.ITALIC, false)
-                .append(component);
     }
 }

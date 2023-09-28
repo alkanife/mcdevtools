@@ -12,7 +12,7 @@ public class PlayerName extends Tool {
 
     @Command
     public void displayNameCommand() {
-        createCommandTool("player_displayname", "Change player display name", "<player> <mini_message>")
+        createCommand("player_displayname", "Change player display name")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -22,7 +22,7 @@ public class PlayerName extends Tool {
 
     @Command
     public void customNameCommand() {
-        createCommandTool("player_customname", "Change player custom name", "<player> <mini_message>")
+        createCommand("player_customname", "Change player custom name")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
@@ -33,7 +33,7 @@ public class PlayerName extends Tool {
 
     @Command
     public void listNameCommand() {
-        createCommandTool("player_listname", "Change player list name", "<player> <mini_message>")
+        createCommand("player_listname", "Change player list name")
                 .withArguments(new PlayerArgument("player"), new GreedyStringArgument("mini_message"))
                 .executes((commandSender, objects) -> {
                     Player player = (Player) Objects.requireNonNull(objects.get(0));
