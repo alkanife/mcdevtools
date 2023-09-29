@@ -2,16 +2,15 @@
   Minecraft devtools
   <br>
   <a href="https://github.com/alkanife/alkabot/blob/main/pom.xml">
-    <img src="https://img.shields.io/badge/Open%20JDK-17-green" alt="JDK 17">
+    <img src="https://img.shields.io/badge/Open%20JDK-17-green?style=flat-square" alt="JDK 17">
   </a>
   <a href="https://github.com/alkanife/mcdevtools/blob/main/LICENSE">
-    <img src="https://img.shields.io/github/license/alkanife/mcdevtools" alt="LICENSE">
+    <img src="https://img.shields.io/github/license/alkanife/mcdevtools?style=flat-square" alt="LICENSE">
   </a>
-  <a href="https://github.com/alkanife/mcdevtools/releases/tag/2.0.0">
-    <img src="https://img.shields.io/badge/version-2.0.0-blue" alt="Version 2.0.0">
+  <a href="https://github.com/alkanife/mcdevtools/releases/tag/2.1.0">
+    <img src="https://img.shields.io/badge/version-2.1.0-blue?style=flat-square" alt="Version 2.1.0">
   </a>
-  <img src="https://img.shields.io/badge/Spigot-1.8.8-orange" alt="Spigot 1.8.8">
-  <img src="https://img.shields.io/badge/PaperMC-1.20-orange" alt="PaperMC 1.20">
+  <img src="https://img.shields.io/badge/PaperMC-1.20-orange?style=flat-square" alt="PaperMC 1.20+">
 </h1>
 
 <p align="center">
@@ -87,5 +86,8 @@ Exemple: /:methods player Alkanife getName()
 ![Methods 1](./img/methods1.png)
 ![Methods 2](./img/methods2.png)
 
+## Project dependencies
+See [Maven Dependencies](https://github.com/alkanife/mcdevtools/blob/main/mcdevtools/pom.xml).
+
 ## License
-[The Unlicense](https://unlicense.org/)
+Under the [MIT](https://github.com/alkanife/mcdevtools/blob/main/LICENSE) license.
