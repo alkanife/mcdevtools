@@ -19,6 +19,8 @@
   •
   <a href="#commands">Commands</a>
   •
+  <a href="#previews">Previews</a>
+  •
   <a href="#license">License</a>
 </p>
 
@@ -27,18 +29,12 @@ This plugin mostly helps me to see how colored messages and items would render i
 
 A version for Minecraft 1.8 is still available under the name **mcdevtools-legacy**, but will not receive the 2.0.0 update. <a href="https://github.com/alkanife/mcdevtools/releases/tag/1.0.0">Latest 1.8-compatible version here</a>.
 
-### Preview
-*Echo:*
-![echo command](./img/echo.png)
-
-*Item name & lore:*
-![item name and lore](./img/item.png)
-
 ## Commands
 If you are not familiar with the MiniMessage format, go to the documentation by <a href="https://docs.advntr.dev/minimessage/format.html">clicking here</a>.
 
 Chat:
 - `echo <value>`: Broadcasts input
+- `clear_chat`: Clear chat by sending empty messages
 
 Tablist:
 - `tablist_header <value>`: Changes the player list header
@@ -56,6 +52,7 @@ Player's team:
 - `player_team_prefix <player> <value>`: Changes the player's team prefix
 - `player_team_suffix <player> <value>`: Changes the player's team suffix
 - `player_team_color <player> <value>`: Changes the player's team color
+- `player_leave_team <player>`: Make a player leave their team
 
 If the player does not have a team, the command will create one.
 
@@ -65,6 +62,30 @@ Items:
 - `item_lore_at <player> <line> <value>`: Changes the lore of the item the player is holding, specifying which line to change
 
 For the lore, use `<newline>` to skip a line.
+
+Entities:
+- `entity_location <entities...> [format]`: Display entity location in a copy-pastable component. Lowercase x,y,z displays 3 digits after decimal points (0,000), and capital X,Y,Z only displays the number before the decimal point
+- `armorstand_position [*|body|head|arms|legs]`: Display armor stand position & angles
+
+Method:
+- `methods server <methods...>`
+- `methods entity <entity> <methods...>`
+- `methods player <player> <methods...>`
+- `methods world <world> <methods...>`
+
+This command allows the executor to invoke a method of the selected entity/object
+Exemple: /:methods player Alkanife getName()
+
+## Previews
+*Echo:*
+![echo command](./img/echo.png)
+
+*Item name & lore:*
+![item name and lore](./img/item.png)
+
+*Methods:*
+![Methods 1](./img/methods1.png)
+![Methods 2](./img/methods2.png)
 
 ## License
 [The Unlicense](https://unlicense.org/)

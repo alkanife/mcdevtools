@@ -6,6 +6,7 @@ import fr.alkanife.mcdevtools.tools.Chat;
 import fr.alkanife.mcdevtools.tools.Items;
 import fr.alkanife.mcdevtools.tools.Methods;
 import fr.alkanife.mcdevtools.tools.Tablist;
+import fr.alkanife.mcdevtools.tools.entity.ArmorStands;
 import fr.alkanife.mcdevtools.tools.entity.EntityLocation;
 import fr.alkanife.mcdevtools.tools.player.PlayerFly;
 import fr.alkanife.mcdevtools.tools.player.PlayerName;
@@ -36,7 +37,7 @@ public class MCDevTools extends JavaPlugin {
             registerTool(new Chat());
             registerTool(new Items());
             registerTools(new PlayerFly(), new PlayerName(), new PlayerTeam());
-            registerTools(new EntityLocation());
+            registerTools(new EntityLocation(), new ArmorStands());
             registerTools(new Methods());
         } catch (InvocationTargetException | IllegalAccessException e) {
             throw new RuntimeException(e);
